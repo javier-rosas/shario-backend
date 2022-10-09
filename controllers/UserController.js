@@ -1,6 +1,4 @@
-const User = require('../schema/userSchema.js')
-const Message = require('../schema/messageSchema.js')
-
+const UserDAO = require('../daos/UserDAO.js')
 
 class UserController {
 
@@ -25,7 +23,7 @@ class UserController {
       const query = { token: token }
       const projection = { messages: 1 }
 
-      User.find(query, projection)
+      UserDAO.find(query, projection)
         .then( result => res.json(result))
         .catch( () => res.json(res.status(404).json({ error: "Todos not found" })))
 
@@ -46,7 +44,7 @@ class UserController {
         $push: { messages: message }
       }
       const options = { upsert : true }
-      Todo.updateOne(query, update, options, (err, data) => {
+      UserDAO.updateOne(query, update, options, (err, data) => {
         if (err) {
           res.status(500).json({ error: "Unable to update user" })
           console.log(err)
@@ -62,12 +60,14 @@ class UserController {
 
   static async deleteMessage(req, res, next) {
     try {
-      const email = req.params.email 
-      const todo = req.params.todo
+      const token = req.params.token 
+      const messageId = req.params.messageId
+
+      // put these two lines in dao
       const query = { email: email }
       const update = { $pullAll: { todos: [todo] } }
 
-      Todo.updateOne(query, update, (err, data) => {
+      UserDAO.updateOne(query, update, (err, data) => {
         if (err) {
           res.status(500).json({ error: "Unable to update user" })
           console.log(err)
