@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken")
 
-const checkUser = (req, res, next) => {
+const checkUserValidity = (req, res, next) => {
   const bearerHeader = req.headers['authorization']
   if (typeof bearerHeader !== 'undefined') {
     req.token = bearerHeader
@@ -18,5 +18,5 @@ const checkUser = (req, res, next) => {
 }
 
 module.exports = {
-  checkUser
+  checkUserValidity
 }
