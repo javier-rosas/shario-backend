@@ -17,6 +17,4 @@ const checkUserValidity = (req, res, next) => {
 	}
 }
 
-module.exports = {
-  checkUserValidity
-}
+module.exports = { checkUserValidity }
