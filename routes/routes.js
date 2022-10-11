@@ -1,6 +1,7 @@
 const express = require('express')
-const MessageController = require('../controllers/MessageController.js');
-const { checkUserValidity } = require("../middleware/auth.js");
+const { checkUserValidity } = require("../middleware/auth.js")
+const UserController = require('../controllers/UserController.js')
+const MessageController = require('../controllers/MessageController.js')
 const router = express.Router()
 
 router.post("/authenticate", MessageController.authenticateUser)

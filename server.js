@@ -8,11 +8,8 @@ const clientOrigins = [process.env.HOST]
 
 // middleware
 app.use(helmet())
-
 app.use(cors({ origin: clientOrigins }))
-
-app.use(express.json({ limit: "50mb" })) //To parse JSON bodies
-
+app.use(express.json({ limit: "50mb" }))
 
 // use routes
 app.use("/api/v1/", routes)
