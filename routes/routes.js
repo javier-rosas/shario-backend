@@ -1,12 +1,12 @@
 const express = require('express')
-const UserController = require('../controllers/UserController.js');
+const MessageController = require('../controllers/MessageController.js');
 const { checkUserValidity } = require("../middleware/auth.middleware");
 const router = express.Router()
 
-router.post("/authenticate", UserController.authenticateUser)
-router.get("/:userToken", checkUserValidity, UserController.getMessages)
-router.put("/messages", checkUserValidity, UserController.addMessage)
-router.delete("/todo/:userToken/:message", checkUserValidity, UserController.deleteMessage)
+router.post("/authenticate", MessageController.authenticateUser)
+router.get("/:userToken", checkUserValidity, MessageController.getMessages)
+router.put("/messages", checkUserValidity, MessageController.addMessage)
+router.delete("/todo/:userToken/:message", checkUserValidity, MessageController.deleteMessage)
 
 
 module.exports = router
